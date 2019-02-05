@@ -33,8 +33,11 @@ As described above the serve function in serve.go acts as the main state machine
 
 How to use this implementation
 -------------------------------
-To use Kubernetes with this project use `./create-docker-image.sh` to first create a Docker image. Then:
+The core code itself is in server. client contains a rather trivial client designed to test the server. For testing one can use Kubernetes, for which a script is provided in launch-tool/launch.py. Please not that launch.py hardcodes a bunch of assumptions about how pods are created, about the fact that we are running under minikube, and that the image itself is named local/raft-peer. As such one can adopt this script for other purposes, but this will need some work.
 
+1.  Go into the '/launch-tool' directory and run pip3 install -r requirements.txt to get all the required dependencies.
+2.  Start up Minikube by running ./boot.sh
+3.  To use Kubernetes with this project use `./create-docker-image.sh` to first create a Docker image. Then:
 -   `./launch.py boot <num peers>` will boot a cluster with `num peers` participants. Each participant is given a list of
   all other participants (so you can connect to them).
 -   `./launch.py list` lists all peers in the current cluster. You can use `kubectl logs <name>` to access the log for a
