@@ -27,6 +27,8 @@ Code Structure
 -   kvstore.go is most of the code from Lab 0, with some minor extensions. The code for the key-value store lives here.
 -   serve.go is where the control loop for this program lives, and where much of your Raft implementation is likely to live.
 
+![picture alt](https://github.com/aviral92/Raft/blob/master/raft-code.png)
+
 As described above the serve function in serve.go acts as the main state machine for your implementation. This function is is responsible for processing client requests, timeouts, Raft requests and some internal communication. The main challenge in building such a function is that GRPC uses a different thread to handle each connection (from clients or from other Raft servers), timers in Go run in their own Go routines, etc. Additionally, we would ideally like the state machine to continue making progress even when RPC calls (e.g., to other peers) hang due to network failures or delays, and as a result we will be running these from their own Go routine (see here for an example of this in action). However, in order to build a state machine we need to handle all of these events from one thread, and we rely on a set of channels to do so. The figure above shows how data flows between the state machine loop and all of these threads, and each arrow is tagged with the channel it uses for communication. 
 
 How to use this implementation
