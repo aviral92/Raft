@@ -1,6 +1,6 @@
 Raft
 ======================================================================================================================================
-This repository is a Golanf implementation of the Raft consensus protocol. Raft is based on "[Raft: In Search of an Understandable Consensus Algorithm](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)".
+This repository is a Golang implementation of the Raft consensus protocol. Raft is based on "[Raft: In Search of an Understandable Consensus Algorithm](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)".
 
 Protocol Description
 ---------------------
